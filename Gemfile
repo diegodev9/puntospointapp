@@ -10,7 +10,7 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+gem 'sassc'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -23,14 +23,28 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# gemas adicionales
+gem 'active_storage_validations'
+gem 'autoprefixer-rails' # autoprefixer para sass
+# gem 'devise', '~> 4.9' # devise logueo de usuarios
+gem 'pagy', '~> 6.0', '>= 6.0.2' # paginacion
+gem 'rails-i18n', '~> 7.0', '>= 7.0.6' # traduccion de rails
+gem 'secure_headers', '~> 6.5'
+gem 'simple_form', '~> 5.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # gemas adicionales
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
+  gem 'faker', '~> 3.1', '>= 3.1.1'
 end
 
 group :development do
@@ -42,6 +56,23 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # gemas adicionales
+  gem 'annotate', '~> 3.2'
+  gem 'brakeman', '~> 5.4', '>= 5.4.1'
+  gem 'bullet'
+  gem "letter_opener"
+  gem 'rails_best_practices', '~> 1.23', '>= 1.23.2'
+  gem 'rubocop', '~> 1.48', '>= 1.48.1', require: false
+  gem 'rubocop-performance', '~> 1.16', require: false
+  gem 'rubocop-rails', '~> 2.18', require: false
+  gem 'rubocop-rspec', '~> 2.19', require: false
+end
+
+group :test do
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.2'
+  gem 'shoulda-matchers', '~> 5.3'
+  gem 'simplecov', '~> 0.22.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
