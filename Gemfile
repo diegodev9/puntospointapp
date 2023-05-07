@@ -61,7 +61,7 @@ group :development do
   gem 'annotate', '~> 3.2'
   gem 'brakeman', '~> 5.4', '>= 5.4.1'
   gem 'bullet'
-  gem "letter_opener"
+  gem 'letter_opener'
   gem 'rails_best_practices', '~> 1.23', '>= 1.23.2'
   gem 'rubocop', '~> 1.48', '>= 1.48.1', require: false
   gem 'rubocop-performance', '~> 1.16', require: false
