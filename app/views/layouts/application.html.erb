@@ -11,6 +11,24 @@
   </head>
 
   <body>
+  <% if notice.present? || alert.present? %>
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+      <div class="toast-container top-0 end-0 p-3">
+        <% flash.each do |type, msg| %>
+          <div class="toast <%= type == 'alert' ? 'bg-danger' : 'bg-primary' %>" role='alert' aria-atomic="true" aria-live="assertive">
+            <div class="d-flex">
+              <div class="toast-body">
+                <div>
+                  <%= msg %>
+                </div>
+              </div>
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
     <%= yield %>
   </body>
 </html>
