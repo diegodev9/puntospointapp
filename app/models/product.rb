@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: products
@@ -21,7 +23,7 @@
 #
 class Product < ApplicationRecord
   belongs_to :user
-  has_many_attached :pictures
+  has_many_attached :pictures, dependent: :destroy
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
 end

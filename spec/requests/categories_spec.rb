@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'support/devise_for_request'
 require 'support/database_cleaner'
@@ -6,7 +8,7 @@ RSpec.describe 'Categories', type: :request do
   let(:new_category) { create(:category) }
   let(:new_user) { create(:user, level: 1) }
   let(:new_client) { create(:user, level: 0) }
-  
+
   before do
     sign_in new_user
     new_category
@@ -57,7 +59,7 @@ RSpec.describe 'Categories', type: :request do
         end.to change(Category, :count).by(1)
       end
 
-      it 'redirects to categories list' do
+      it 'have status created' do
         post categories_url, params: { name: 'categoria2' }, as: :json
         expect(response).to have_http_status(:created)
       end

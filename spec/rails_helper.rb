@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Rails/FilePath
-
 # Simplecov
 require 'simplecov'
 SimpleCov.start
@@ -72,4 +70,3 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
-# rubocop:enable Rails/FilePath

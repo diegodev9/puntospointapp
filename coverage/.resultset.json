@@ -4,6 +4,8 @@
       "/media/home/Proyectos/puntospoint/puntospointapp/config/environment.rb": {
         "lines": [
           null,
+          null,
+          null,
           1,
           null,
           null,
@@ -12,6 +14,8 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/application.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           1,
@@ -54,6 +58,8 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/boot.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           1,
@@ -62,6 +68,8 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/environments/test.rb": {
         "lines": [
+          null,
+          null,
           1,
           null,
           null,
@@ -133,11 +141,14 @@
           null,
           null,
           null,
+          null,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/initializers/assets.rb": {
         "lines": [
+          null,
+          null,
           null,
           null,
           null,
@@ -156,6 +167,8 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/initializers/backtrace_silencers.rb": {
         "lines": [
+          null,
+          null,
           null,
           null,
           null,
@@ -197,11 +210,14 @@
           null,
           null,
           null,
+          null,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/initializers/cookies_serializer.rb": {
         "lines": [
+          null,
+          null,
           null,
           null,
           null,
@@ -531,6 +547,8 @@
           null,
           null,
           null,
+          null,
+          null,
           1,
           null,
           null
@@ -538,6 +556,7 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/initializers/inflections.rb": {
         "lines": [
+          null,
           null,
           null,
           null,
@@ -561,11 +580,13 @@
           null,
           null,
           null,
+          null,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/initializers/permissions_policy.rb": {
         "lines": [
+          null,
           null,
           null,
           null,
@@ -598,6 +619,7 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/initializers/simple_form.rb": {
         "lines": [
+          null,
           null,
           null,
           null,
@@ -826,7 +848,6 @@
           null,
           null,
           null,
-          null,
           1,
           1,
           1,
@@ -855,6 +876,7 @@
           null,
           null,
           1,
+          null,
           1,
           1,
           1,
@@ -867,6 +889,7 @@
           null,
           null,
           1,
+          null,
           1,
           1,
           1,
@@ -927,7 +950,6 @@
           null,
           null,
           null,
-          null,
           1,
           1,
           1,
@@ -960,6 +982,7 @@
           null,
           null,
           1,
+          null,
           1,
           1,
           1,
@@ -972,6 +995,7 @@
           null,
           null,
           1,
+          null,
           1,
           1,
           1,
@@ -1040,7 +1064,6 @@
           null,
           null,
           null,
-          null,
           1,
           1,
           1,
@@ -1065,7 +1088,6 @@
           1,
           1,
           1,
-          null,
           null,
           null,
           null,
@@ -1085,7 +1107,6 @@
           null,
           null,
           null,
-          null,
           1,
           1,
           1,
@@ -1107,7 +1128,6 @@
           null,
           null,
           null,
-          null,
           1,
           1,
           1,
@@ -1130,7 +1150,6 @@
           1,
           1,
           1,
-          null,
           null,
           null,
           null,
@@ -1154,6 +1173,8 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/initializers/wrap_parameters.rb": {
         "lines": [
+          null,
+          null,
           null,
           null,
           null,
@@ -1185,6 +1206,8 @@
           null,
           null,
           null,
+          null,
+          null,
           1,
           1,
           1,
@@ -1194,6 +1217,8 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/spec/factories/category_products.rb": {
         "lines": [
+          null,
+          null,
           null,
           null,
           null,
@@ -1245,12 +1270,14 @@
           null,
           null,
           null,
+          null,
+          null,
           1,
           1,
-          6,
-          6,
-          6,
-          6,
+          17,
+          17,
+          17,
+          17,
           null,
           null
         ]
@@ -1276,28 +1303,30 @@
           null,
           null,
           null,
+          null,
+          null,
           1,
           1,
-          6,
-          6,
-          6,
+          16,
+          16,
+          16,
           null,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/config/routes.rb": {
         "lines": [
-          1,
           null,
-          1,
-          null,
-          null,
-          null,
-          1,
           null,
           1,
           1,
           null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
           null,
           null,
           null
@@ -1324,7 +1353,6 @@
           null,
           null,
           null,
-          1,
           null,
           null,
           1,
@@ -1332,6 +1360,9 @@
           null,
           1,
           null,
+          null,
+          1,
+          null,
           1,
           null,
           1,
@@ -1340,13 +1371,15 @@
           null,
           null,
           1,
-          5,
+          15,
           null,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/models/application_record.rb": {
         "lines": [
+          null,
+          null,
           1,
           1,
           null
@@ -1354,30 +1387,40 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/helpers/application_helper.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/helpers/categories_helper.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/helpers/home_helper.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/helpers/products_helper.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/spec/support/shoulda_matchers.rb": {
         "lines": [
+          null,
+          null,
           null,
           1,
           1,
@@ -1408,11 +1451,11 @@
           null,
           null,
           1,
-          5,
+          12,
           null,
           null,
           1,
-          5,
+          12,
           null,
           null
         ]
@@ -1449,6 +1492,8 @@
           null,
           null,
           null,
+          null,
+          null,
           1,
           1,
           1,
@@ -1459,6 +1504,8 @@
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/controllers/products_controller.rb": {
         "lines": [
+          null,
+          null,
           1,
           1,
           1,
@@ -1472,21 +1519,19 @@
           null,
           1,
           null,
-          null,
           1,
           1,
           null,
           null,
           1,
           null,
-          null,
           1,
-          0,
+          2,
           null,
-          0,
-          0,
-          0,
-          0,
+          2,
+          2,
+          2,
+          4,
           null,
           0,
           0,
@@ -1495,40 +1540,85 @@
           null,
           null,
           1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
           1,
           1,
-          null,
-          null,
           1,
+          2,
+          null,
           0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          5,
+          null,
+          null,
+          1,
+          3,
           null,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/controllers/application_controller.rb": {
         "lines": [
+          null,
+          null,
           1,
           null
         ]
       },
       "/media/home/Proyectos/puntospoint/puntospointapp/app/controllers/concerns/check_user_level.rb": {
         "lines": [
-          1,
-          1,
-          1,
-          2,
           null,
+          null,
+          1,
+          1,
+          1,
+          9,
+          null,
+          null
+        ]
+      },
+      "/media/home/Proyectos/puntospoint/puntospointapp/app/models/category_product.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
           null
         ]
       }
     },
-    "timestamp": 1683642645
+    "timestamp": 1683653843
   }
 }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CheckUserLevel
   extend ActiveSupport::Concern
   def check_user_level

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_category, only: %i[show edit update destroy]
@@ -16,7 +18,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit; end
-  
+
   def create
     @category = Category.new(category_params)
 
@@ -30,7 +32,7 @@ class CategoriesController < ApplicationController
       end
     end
   end
-  
+
   def update
     respond_to do |format|
       if @category.update(category_params)
@@ -42,18 +44,18 @@ class CategoriesController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @category.destroy
     redirect_to categories_url
   end
-  
+
   private
-  
+
   def set_category
     @category = Category.find(params[:id])
   end
-  
+
   def category_params
     params.require(:category).permit(:name)
   end

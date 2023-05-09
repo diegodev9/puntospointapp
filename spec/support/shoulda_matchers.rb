@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # configure shoulda matchers to use rspec as the test framework and full matcher libraries for rails
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -24,15 +26,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :products, dependent: :destroy
-  
+
   before_create :set_user_level
-  
+
   enum level: {
     client: 0,
     admin: 1
   }
 
   def set_user_level
-    self.level = 0 if self.level.blank?
+    self.level = 0 if level.blank?
   end
 end

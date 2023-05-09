@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_product, only: %i[show edit update destroy]
@@ -9,15 +11,13 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @product = current_user.products.build
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @product = current_user.products.build(product_params)
@@ -34,9 +34,20 @@ class ProductsController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to product_url(@product), notice: 'Product was successfully updated.' }
+        format.json { render 'products/index', status: :ok, location: @products }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @product.destroy
+    redirect_to products_url
   end
 
   private
@@ -46,6 +57,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    require.params(:product).permit(:active, :name, :price, :stock, :user_id)
+    params.require(:product).permit(:active, :name, :price, :stock, :user_id)
   end
 end
