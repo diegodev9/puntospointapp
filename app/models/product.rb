@@ -26,4 +26,15 @@ class Product < ApplicationRecord
   has_many_attached :pictures, dependent: :destroy
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
+
+  validates :pictures, content_type: { in: %w[image/jpeg image/gif image/png],
+                                                       message: 'formato inválido' },
+                       size: { less_than: 1.megabytes,
+                               message: 'la imagen supera 1MB' }
+
+  before_destroy :purge_product_pictures
+
+  def purge_product_pictures
+    self.pictures.purge
+  end
 end

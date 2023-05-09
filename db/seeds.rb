@@ -7,10 +7,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Category.destroy_all
-CategoryProduct.destroy_all
-Product.destroy_all
-User.destroy_all
+def clear_db_and_files
+  Category.destroy_all
+  CategoryProduct.destroy_all
+  Product.destroy_all
+  User.destroy_all
+  FileUtils.rm_rf(Rails.root.join('storage'))
+end
+
+clear_db_and_files
 
 # ----------------------------------------------------- USERS
 3.times do |i|
@@ -32,10 +37,17 @@ client_users = User.where(level: 'client').map(&:id)
 end
 
 # ----------------------------------------------------- PRODUCTS
-25.times do
+24.times do
   Product.create(active: true,
                  name: Faker::Commerce.product_name,
                  price: Faker::Commerce.price(range: 1..99.99),
                  stock: 99,
                  user_id: admin_users.sample)
+end
+
+products = Product.all
+products.each do |product|
+  i = 0
+  product.pictures.attach(io: File.open("#{Rails.public_path}/images/#{i + 1}.png"), filename: "#{i + 1}.png")
+  i += 1
 end
