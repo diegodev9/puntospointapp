@@ -21,9 +21,9 @@
 #
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
-    stock { 1 }
-    price { 1.5 }
-    active { false }
+    name { Faker::Commerce.product_name }
+    stock { 99 }
+    price { Faker::Commerce.price(range: 1..99.99) }
+    active { true }
   end
 end

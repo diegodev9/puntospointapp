@@ -14,5 +14,12 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'has_many and belongs conditions' do
+    it { is_expected.to have_many(:category_products).dependent(:destroy) }
+    it { is_expected.to have_many(:products).through(:category_products) }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_uniqueness_of(:name) }
+  end
 end

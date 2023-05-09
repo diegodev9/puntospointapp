@@ -20,7 +20,13 @@
 #  fk_rails_...  (user_id => users.id)
 #
 require 'rails_helper'
+require 'support/database_cleaner'
 
 RSpec.describe Product, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'has_many and belongs conditions' do
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many_attached(:pictures) }
+    it { is_expected.to have_many(:category_products) }
+    it { is_expected.to have_many(:categories).through(:category_products) }
+  end
 end

@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'support/devise'
+require 'support/devise_for_request'
 require 'support/database_cleaner'
 
 RSpec.describe 'Categories', type: :request do
@@ -79,7 +79,6 @@ RSpec.describe 'Categories', type: :request do
       end
 
       it 'redirects to root path' do
-        puts new_user.level
         post categories_url, params: { name: 'categoria1' }, as: :json
         expect(response).to redirect_to(root_path)
       end

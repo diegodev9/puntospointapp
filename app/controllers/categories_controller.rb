@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :check_user_level, only: %i[create update destroy]
   before_action :set_category, only: %i[show edit update destroy]
+
+  include CheckUserLevel
+  before_action :check_user_level, except: %i[index show]
 
   def index
     @categories = Category.all.order(name: :asc)
@@ -9,7 +11,9 @@ class CategoriesController < ApplicationController
 
   def show; end
 
-  def new; end
+  def new
+    @category = Category.new
+  end
 
   def edit; end
   
@@ -48,10 +52,6 @@ class CategoriesController < ApplicationController
   
   def set_category
     @category = Category.find(params[:id])
-  end
-
-  def check_user_level
-    redirect_to root_path, notice: 'no estas autorizado para hacer esto' unless user_signed_in? && current_user.admin?
   end
   
   def category_params

@@ -20,11 +20,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Product < ApplicationRecord
-  has_and_belongs_to_many(:categories)
-
-  before_create :set_product_owner
-
-  def set_product_owner
-    self.user_id = current_user.id
-  end
+  belongs_to :user
+  has_many_attached :pictures
+  has_many :category_products, dependent: :destroy
+  has_many :categories, through: :category_products
 end
