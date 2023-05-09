@@ -6,3 +6,36 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Category.destroy_all
+CategoryProduct.destroy_all
+Product.destroy_all
+User.destroy_all
+
+# ----------------------------------------------------- USERS
+3.times do |i|
+  User.create(email: "admin#{i + 1}@admin.com", 
+              address: Faker::Address.full_address, 
+              password: '123456',
+              level: 'admin')
+  User.create(email: "client#{i + 1}@client.com",
+              address: Faker::Address.full_address,
+              password: '123456')
+end
+
+admin_users = User.where(level: 'admin').map(&:id)
+client_users = User.where(level: 'client').map(&:id)
+
+# ----------------------------------------------------- CATEGORIES
+5.times do |i|
+  Category.create(name: "categoria#{i + 1}")
+end
+
+# ----------------------------------------------------- PRODUCTS
+25.times do
+  Product.create(active: true,
+                 name: Faker::Commerce.product_name,
+                 price: Faker::Commerce.price(range: 1..99.99),
+                 stock: 99,
+                 user_id: admin_users.sample)
+end
