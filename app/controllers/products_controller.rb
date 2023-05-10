@@ -5,10 +5,31 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   include CheckUserLevel
+  include Pagy::Backend
   before_action :check_user_level, except: %i[index show]
 
   def index
-    @products = Product.all
+    @pagy, @products = if params[:order_by].present?
+                  case params[:order_by]
+                  when 'mas viejo'
+                    pagy(Product.all_by_older)
+                  when 'mas nuevo'
+                    pagy(Product.all_by_newer)
+                  when 'nombre A-Z'
+                    pagy(Product.all_by_name_asc)
+                  when 'nombre Z-A'
+                    pagy(Product.all_by_name_desc)
+                  when 'mayor precio'
+                    pagy(Product.all_by_high_price)
+                  when 'menor precio'
+                    pagy(Product.all_by_low_price)
+                  end
+                else
+                  pagy(Product.all_by_newer)
+                end
+
+    @order_by_options = [['mas nuevo'], ['mas viejo'], ['nombre A-Z'], ['nombre Z-A'], ['mayor precio'],
+                         ['menor precio']]
   end
 
   def show; end

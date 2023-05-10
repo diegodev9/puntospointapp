@@ -28,13 +28,24 @@ class Product < ApplicationRecord
   has_many :categories, through: :category_products
 
   validates :pictures, content_type: { in: %w[image/jpeg image/gif image/png],
-                                                       message: 'formato inválido' },
+                                       message: 'formato inválido' },
                        size: { less_than: 1.megabytes,
                                message: 'la imagen supera 1MB' }
 
   before_destroy :purge_product_pictures
 
+  scope :all_by_newer, -> { all.order(created_at: :asc) }
+  scope :all_by_older, -> { all.order(created_at: :desc) }
+  scope :all_by_name_asc, -> { all.order(name: :asc) }
+  scope :all_by_name_desc, -> { all.order(name: :desc) }
+  scope :all_by_high_price, -> { all.order(price: :desc) }
+  scope :all_by_low_price, -> { all.order(price: :asc) }
+
   def purge_product_pictures
     self.pictures.purge
+  end
+
+  def product_image_on_disk(picture)
+    ActiveStorage::Blob.service.path_for(picture.key)
   end
 end

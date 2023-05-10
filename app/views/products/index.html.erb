@@ -1,6 +1,60 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="d-flex justify-content-between">
+  <div class="head-title">
+    <h2>Productos <%= @order_title %></h2>
+  </div>
+  <div class="seleccion-ordenar d-flex align-items-center">
+    <p class="pe-2 mb-0">ordenar por:</p>
+    <%= form_with(controller: 'products#index', method: :get) do |f| %>
+      <%= f.select :order_by, options_for_select(@order_by_options), {include_blank: 'elegir'}, class: 'form-select', onchange: 'this.form.submit();' %>
+    <% end %>
+  </div>
+</div>
 
-<% @products.each do |product| %>
-  <%= product.name %>
-<% end %>
+<hr>
+
+<div class="products">
+  <div class="row justify-content-center">
+    <% @products.each do |product| %>
+      <% cache product do %>
+        <div class="col-lg-3 col-md-4 my-3">
+          <div class="single-product h-100">
+            <% if product.pictures.attached? %>
+              <div id="product<%= product.id %>" class="carousel slide">
+                <div class="carousel-inner">
+                  <% product.pictures.includes([:blob]).each_with_index do |picture, index| %>
+                    <% cache picture do %>
+                      <div class="carousel-item <%= "active" if index == 0 %>">
+                        <%#= image_tag(product.product_image_on_disk(picture), class: 'd-block w-100', alt: product.name) %>
+                        <%= image_tag(picture, class: 'd-block w-100', alt: product.name) %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#product<%= product.id %>" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#product<%= product.id %>" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            <% end %>
+            <div class="text-center">
+              <h5><%= product.name %></h5>
+              <h6>$ <%= product.price %></h6>
+              <% if product.stock > 0 %>
+                <a href="#" class="btn btn-primary">Comprar</a>
+              <% else %>
+                <p>producto no disponible</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="pagy-buttons">
+      <%== pagy_bootstrap_nav(@pagy, i18n_key: 'es') if @pagy.pages > 1 %>
+    </div>
+  </div>
+</div>

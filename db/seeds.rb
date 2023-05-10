@@ -46,8 +46,10 @@ end
 end
 
 products = Product.all
-products.each do |product|
-  i = 0
-  product.pictures.attach(io: File.open("#{Rails.public_path}/images/#{i + 1}.png"), filename: "#{i + 1}.png")
-  i += 1
+products.each_with_index do |product, index|
+  product.pictures.attach(io: File.open("#{Rails.public_path}/images/#{index + 1}.png"), filename: "#{index + 1}.png")
+  3.times do
+    number = rand(1..24)
+    product.pictures.attach(io: File.open("#{Rails.public_path}/images/#{number}.png"), filename: "#{number}.png")
+  end
 end
