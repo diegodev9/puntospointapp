@@ -18,4 +18,7 @@ class Category < ApplicationRecord
   has_many :products, through: :category_products
 
   validates :name, uniqueness: true
+
+  scope :list_all_categories, -> { all.order(name: :asc) }
+  scope :list_categories_for_options, -> { all.map { |cat| [cat.name, cat.id] } }
 end

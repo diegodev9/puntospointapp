@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= simple_form_for(@product) do |f| %>
+      <%= f.error_notification %>
+      <%= f.object.errors.full_messages.join(", ") if f.object.errors.any? %>
+
+      <div class="form-inputs">
+        <%= f.association :categories, collection: @categories_options, include_blank: false, include_hidden: false, class: 'form-select multiselect mb-3', label: 'Categorias' %>
+        <%= f.input :name, label: 'nombre' %>
+        <%= f.input :price, label: 'precio' %>
+        <%= f.input :stock %>
+        <%= f.input :active, label: 'activo' %>
+        <%= f.input :pictures, as: :file, label: 'Subir imágenes', input_html: { multiple: true } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit @product.new_record? ? 'Guardar' : 'Actualizar', class: 'btn btn-sm btn-primary mb-3' %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

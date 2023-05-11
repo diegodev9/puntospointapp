@@ -36,13 +36,16 @@ client_users = User.where(level: 'client').map(&:id)
   Category.create(name: "categoria#{i + 1}")
 end
 
+category_ids = Category.all.map(&:id)
+
 # ----------------------------------------------------- PRODUCTS
 24.times do
   Product.create(active: true,
                  name: Faker::Commerce.product_name,
                  price: Faker::Commerce.price(range: 1..99.99),
                  stock: 99,
-                 user_id: admin_users.sample)
+                 user_id: admin_users.sample,
+                 category_ids: category_ids.sample(3))
 end
 
 products = Product.all

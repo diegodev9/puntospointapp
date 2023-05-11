@@ -15,6 +15,14 @@ $color-bg-footer: #C9A7EB;
   }
 }
 
+.toast-body {
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: $color-navbar;
+}
+
 .bg-body-tertiary {
   background-color: $color-navbar !important;
 }
@@ -29,6 +37,12 @@ $color-bg-footer: #C9A7EB;
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
   filter: brightness(0);
+}
+
+.carousel-item {
+  min-height: 300px;
+  max-height: 300px;
+  overflow: hidden;
 }
 
 .single-product {

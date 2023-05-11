@@ -34,12 +34,13 @@ class Product < ApplicationRecord
 
   before_destroy :purge_product_pictures
 
-  scope :all_by_newer, -> { all.order(created_at: :asc) }
-  scope :all_by_older, -> { all.order(created_at: :desc) }
-  scope :all_by_name_asc, -> { all.order(name: :asc) }
-  scope :all_by_name_desc, -> { all.order(name: :desc) }
-  scope :all_by_high_price, -> { all.order(price: :desc) }
-  scope :all_by_low_price, -> { all.order(price: :asc) }
+  scope :all_active, -> { where(active: true) }
+  scope :all_by_newer, -> { all_active.order(created_at: :desc) }
+  scope :all_by_older, -> { all_active.order(created_at: :asc) }
+  scope :all_by_name_asc, -> { all_active.order(name: :asc) }
+  scope :all_by_name_desc, -> { all_active.order(name: :desc) }
+  scope :all_by_high_price, -> { all_active.order(price: :desc) }
+  scope :all_by_low_price, -> { all_active.order(price: :asc) }
 
   def purge_product_pictures
     self.pictures.purge

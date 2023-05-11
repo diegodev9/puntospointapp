@@ -1,2 +1,7 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<h2>Nuevo producto</h2>
+
+<% @form_text_button = 'Guardar' %>
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'Cancelar', products_path, class: 'btn btn-sm btn-dark' %>

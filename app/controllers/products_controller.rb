@@ -5,8 +5,8 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   include CheckUserLevel
-  include Pagy::Backend
   before_action :check_user_level, except: %i[index show]
+  before_action :set_categories_options, only: %i[new create edit update]
 
   def index
     @pagy, @products = if params[:order_by].present?
@@ -30,6 +30,8 @@ class ProductsController < ApplicationController
 
     @order_by_options = [['mas nuevo'], ['mas viejo'], ['nombre A-Z'], ['nombre Z-A'], ['mayor precio'],
                          ['menor precio']]
+
+    @categories = Category.list_all_categories
   end
 
   def show; end
@@ -42,6 +44,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.build(product_params)
+    @product.categories << params[:product][:category_ids] if params[:category_ids].present?
 
     respond_to do |format|
       if @product.save
@@ -77,7 +80,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def set_categories_options
+    @categories_options = Category.list_categories_for_options
+  end
+
   def product_params
-    params.require(:product).permit(:active, :name, :price, :stock, :user_id, pictures: [])
+    params.require(:product).permit(:active, :name, :price, :stock, :user_id, pictures: [], category_ids: [])
   end
 end

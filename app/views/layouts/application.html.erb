@@ -47,18 +47,35 @@
                 Categorias
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <% if @categories.present? %>
+                  <% @categories.each do |category| %>
+                    <li><%= link_to category.name, category_path(category), class: 'dropdown-item' %></li>
+                  <% end %>
+                <% end %>
               </ul>
             </li>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Mis compras</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Mis ventas</a>
-            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Mis compras</a>
+              </li>
+              <% if current_user.admin? %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Mis ventas</a>
+                </li>
+              <% end %>
+              <li class="nav-item">
+                <%= link_to 'Salir', destroy_user_session_path(current_user), method: :delete, class: 'nav-link' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Crear cuenta', new_user_registration_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
