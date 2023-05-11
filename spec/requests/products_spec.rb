@@ -6,13 +6,13 @@ require 'support/devise_for_request'
 
 RSpec.describe 'Products', type: :request do
   let(:new_user) { create(:user, level: 1) }
+  let(:new_categories) { create_list(:category, 5) }
   let(:new_client) { create(:user, level: 0) }
-  let(:new_product) { build(:product, user_id: new_user.id) }
-  let(:another_product) { create(:product, user_id: new_user.id) }
+  let(:build_product) { build(:product, user_id: new_user.id) }
+  let(:new_product) { create(:product, user_id: new_user.id) }
 
   before do
     sign_in new_user
-    new_product.save
   end
 
   describe 'GET /index' do
@@ -22,6 +22,7 @@ RSpec.describe 'Products', type: :request do
     end
 
     it 'lists all products' do
+      new_product
       get products_url
       expect(response.body).to include(new_product.name)
     end
@@ -34,7 +35,7 @@ RSpec.describe 'Products', type: :request do
     end
   end
 
-  describe 'GET /new' do
+  describe 'GET /new', skip_before: true do
     it 'renders a successful response' do
       get new_product_url
       expect(response).to be_successful
@@ -52,13 +53,22 @@ RSpec.describe 'Products', type: :request do
     context 'with credentials' do
       it 'creates the product' do
         expect do
-          post products_url, params: { product: new_product }, as: :json
+          post products_url, params: { product: build_product }, as: :json
         end.to change(Product, :count).by(1)
       end
 
       it 'have status created' do
-        post products_url, params: { product: new_product }, as: :json
+        post products_url, params: { product: build_product }, as: :json
         expect(response).to have_http_status(:created)
+      end
+
+      it 'saves the product categories' do
+        product_params = { name: 'producto1', stock: 99, active: 1, price: 10,
+                           user_id: new_user.id, category_ids: new_categories.each.map { |c| c.id.to_s }.first(3) }
+
+        expect do
+          post products_url, params: { product: product_params }, as: :json
+        end.to change(CategoryProduct, :count).by(3)
       end
     end
 
@@ -70,7 +80,7 @@ RSpec.describe 'Products', type: :request do
 
       it 'does not create a product' do
         expect do
-          post products_url, params: { product: new_product }, as: :json
+          post products_url, params: { product: build_product }, as: :json
         end.to change(Product, :count).by(0)
       end
     end
@@ -79,7 +89,7 @@ RSpec.describe 'Products', type: :request do
   describe 'PATCH /update' do
     context 'with credentials' do
       it 'updates a product' do
-        patch product_url(another_product.id), params: { stock: 2 }, as: :json
+        patch product_url(new_product.id), params: { stock: 2 }, as: :json
         expect(response).to have_http_status(:ok)
       end
     end
@@ -91,7 +101,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       it 'does not update a product and redirects to root path' do
-        patch product_url(another_product.id), params: { stock: 2 }, as: :json
+        patch product_url(new_product.id), params: { stock: 2 }, as: :json
         expect(response).to redirect_to(root_path)
       end
     end
@@ -99,13 +109,13 @@ RSpec.describe 'Products', type: :request do
 
   describe 'DELETE /destroy' do
     before do
-      another_product
+      new_product
     end
 
     context 'with credentials' do
       it 'deletes the product' do
         expect do
-          delete product_url(another_product)
+          delete product_url(new_product)
         end.to change(Product, :count).by(-1)
       end
     end
@@ -117,7 +127,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       it 'redirects to root path' do
-        delete product_url(another_product)
+        delete product_url(new_product)
         expect(response).to redirect_to(root_path)
       end
     end

@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   before_action :check_user_level, except: %i[index show]
 
   def index
-    @categories = Category.all.order(name: :asc)
+    @categories = Category.list_all_categories
   end
 
   def show; end

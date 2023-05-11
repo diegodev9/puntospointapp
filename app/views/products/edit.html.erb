@@ -1,2 +1,19 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<h2>Editar producto</h2>
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'Cancelar', products_path, class: 'btn btn-sm btn-dark' %>
+
+<% if @product.pictures.attached? %>
+  <h4 class="mt-5">Imágenes subidas</h4>
+  <div class="row">
+    <% @product.pictures.includes([:blob]).each do |picture| %>
+      <div class="col-md-2">
+        <%= image_tag(picture, class: 'img-fluid') %>
+        <div class="text-center">
+          <%= button_to 'Eliminar', remove_picture_path(id: @product.id, picture_id: picture), method: :delete, class: 'btn btn-sm btn-danger' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -51,6 +51,7 @@
               <h5><%= product.name %></h5>
               <h6>$ <%= product.price %></h6>
               <% if product.stock > 0 %>
+                <%= link_to 'Editar', edit_product_path(product), class: 'btn btn-sm btn-warning' %>
                 <a href="#" class="btn btn-primary">Comprar</a>
               <% else %>
                 <p>producto no disponible</p>

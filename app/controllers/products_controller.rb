@@ -2,7 +2,7 @@
 
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_product, only: %i[show edit update destroy remove_picture]
 
   include CheckUserLevel
   before_action :check_user_level, except: %i[index show]
@@ -31,7 +31,6 @@ class ProductsController < ApplicationController
     @order_by_options = [['mas nuevo'], ['mas viejo'], ['nombre A-Z'], ['nombre Z-A'], ['mayor precio'],
                          ['menor precio']]
 
-    @categories = Category.list_all_categories
   end
 
   def show; end
@@ -44,10 +43,14 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.build(product_params)
-    @product.categories << params[:product][:category_ids] if params[:category_ids].present?
 
     respond_to do |format|
       if @product.save
+        if params[:product][:category_ids].present?
+          params[:product][:category_ids].each do |category_id|
+            @product.category_ids << category_id
+          end
+        end
         format.html { redirect_to products_url, notice: 'Product was successfully created.' }
         format.json { render 'products/index', status: :created, location: @products }
       else
@@ -58,9 +61,17 @@ class ProductsController < ApplicationController
   end
 
   def update
+    if params[:product][:category_ids].present?
+      category_ids = params[:product][:category_ids]
+
+      category_ids.each do |category_id|
+        @product.category_ids << category_ids unless @product.category_ids.include?(category_id)
+      end
+    end
+
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to product_url(@product), notice: 'Product was successfully updated.' }
+        format.html { redirect_to products_url, notice: 'Product was successfully updated.' }
         format.json { render 'products/index', status: :ok, location: @products }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -72,6 +83,12 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     redirect_to products_url
+  end
+
+  def remove_picture
+    picture = @product.pictures.find(params[:picture_id])
+    picture.purge
+    redirect_to edit_product_path(@product)
   end
 
   private

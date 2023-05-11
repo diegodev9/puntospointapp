@@ -34,7 +34,7 @@ class Product < ApplicationRecord
 
   before_destroy :purge_product_pictures
 
-  scope :all_active, -> { where(active: true) }
+  scope :all_active, -> { where(active: true).includes([:pictures_attachments]) }
   scope :all_by_newer, -> { all_active.order(created_at: :desc) }
   scope :all_by_older, -> { all_active.order(created_at: :asc) }
   scope :all_by_name_asc, -> { all_active.order(name: :asc) }
