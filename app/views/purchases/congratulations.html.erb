@@ -1,1 +1,19 @@
-<h1>congratulations</h1>
+<div class="d-flex justify-content-between">
+  <div class="head-title">
+    <h2>¡Felicidades!</h2>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-1">
+    <%= image_tag(@purchase.product.pictures.first, class: 'img-fluid') %>
+  </div>
+  <div class="col-4">
+    <h4>Compraste:</h4>
+    <h4><%= @purchase.product.name %> a $<%= @purchase.product.price %></h4>
+  </div>
+</div>
+
+<%= link_to 'seguir comprando', root_path %>

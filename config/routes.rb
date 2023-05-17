@@ -1,10 +1,20 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'users/purchases'
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+
+  namespace :api do
+    namespace :v1 do
+      devise_for :users, controllers: {
+        sessions: 'api/v1/users/sessions',
+        registrations: 'api/v1/users/registrations'
+      }
+    end
+  end
+
+  get '/member-data', to: 'members#show'
 
   root to: 'home#index'
 
@@ -14,7 +24,7 @@ Rails.application.routes.draw do
     resources :purchases, only: :index
   end
 
-  resources :users, only: :purchase do
+  resources :users, only: :purchases do
     member do
       get 'purchases'
     end

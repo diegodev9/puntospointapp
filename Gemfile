@@ -36,8 +36,8 @@ gem 'autoprefixer-rails' # autoprefixer para sass
 gem 'devise', '~> 4.9', '>= 4.9.2' # devise logueo de usuarios
 gem 'devise-jwt', '~> 0.10.0'
 gem 'pagy', '~> 6.0', '>= 6.0.2' # paginacion
+gem 'rack-cors', '~> 2.0', '>= 2.0.1'
 gem 'rails-i18n', '~> 7.0', '>= 7.0.6' # traduccion de rails
-gem 'secure_headers', '~> 6.5'
 gem 'simple_form', '~> 5.2'
 
 group :development, :test do

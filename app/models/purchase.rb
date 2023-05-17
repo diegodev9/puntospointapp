@@ -22,5 +22,5 @@ class Purchase < ApplicationRecord
   belongs_to :user
   belongs_to :product
 
-  scope :by_client, ->(user) { includes([:product],[:user]).where(user_id: user) }
+  scope :by_client, ->(user) { includes([:product]).where(user_id: user) }
 end
