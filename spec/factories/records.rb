@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: records
@@ -23,6 +25,6 @@ FactoryBot.define do
   factory :record do
     recordable { nil }
     user { nil }
-    action { "MyText" }
+    action { 'MyText' }
   end
 end

@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Layout/LineLength
+# purchases controller
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_purchase, only: %i[show congratulations]
@@ -27,11 +31,9 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def congratulations
-  end
+  def congratulations; end
 
-  def show
-  end
+  def show; end
 
   private
 
@@ -43,3 +45,4 @@ class PurchasesController < ApplicationController
     params.permit(:product_id)
   end
 end
+# rubocop:enable Metrics/MethodLength, Metrics/AbcSize, Layout/LineLength

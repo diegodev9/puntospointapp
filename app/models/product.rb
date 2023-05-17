@@ -30,7 +30,6 @@ class Product < ApplicationRecord
   has_many :purchases, dependent: :destroy
   has_many :users, through: :purchases
 
-
   validates :pictures, content_type: { in: %w[image/jpeg image/gif image/png],
                                        message: 'formato inválido' },
                        size: { less_than: 1.megabytes,
@@ -47,7 +46,7 @@ class Product < ApplicationRecord
   scope :all_by_low_price, -> { all_active.order(price: :asc) }
 
   def purge_product_pictures
-    self.pictures.purge
+    pictures.purge
   end
 
   def product_image_on_disk(picture)

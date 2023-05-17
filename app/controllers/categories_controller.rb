@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+# categories controller
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: %i[show]
   before_action :set_category, only: %i[show edit update destroy]
@@ -67,3 +69,4 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
 end
+# rubocop:enable Metrics/AbcSize, Metrics/MethodLength

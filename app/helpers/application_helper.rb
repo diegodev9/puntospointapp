@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# application helper
 module ApplicationHelper
   include Pagy::Frontend
 
@@ -8,6 +9,7 @@ module ApplicationHelper
   end
 end
 
+# to_boolean class string
 class String
   def to_boolean
     ActiveRecord::Type::Boolean.new.cast(self)

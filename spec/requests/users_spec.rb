@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'support/database_cleaner'
 require 'support/devise_for_request'
@@ -24,5 +26,4 @@ RSpec.describe 'Users', type: :request do
       expect(response.body).to include(new_product.name)
     end
   end
-
 end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -20,8 +21,8 @@ clear_db_and_files
 
 # ----------------------------------------------------- USERS
 3.times do |i|
-  User.create(email: "admin#{i + 1}@admin.com", 
-              address: Faker::Address.full_address, 
+  User.create(email: "admin#{i + 1}@admin.com",
+              address: Faker::Address.full_address,
               password: '123456',
               level: 'admin')
   User.create(email: "client#{i + 1}@client.com",

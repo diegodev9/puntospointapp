@@ -3,6 +3,7 @@
 module Api
   module V1
     module Users
+      # api/v1/session controller
       class SessionsController < Devise::SessionsController
         # before_action :configure_sign_in_params, only: [:create]
         respond_to :json
@@ -26,8 +27,8 @@ module Api
 
         private
 
-        def respond_with(resource, _opts = {})
-          render json: { message: 'You are logged in.'}, status: :ok
+        def respond_with(_resource, _opts = {})
+          render json: { message: 'You are logged in.' }, status: :ok
         end
 
         def respond_to_on_destroy
@@ -37,11 +38,11 @@ module Api
         end
 
         def log_out_success
-          render json: { message: "You are logged out." }, status: :ok
+          render json: { message: 'You are logged out.' }, status: :ok
         end
 
         def log_out_failure
-          render json: { message: "Hmm nothing happened." }, status: :unauthorized
+          render json: { message: 'Hmm nothing happened.' }, status: :unauthorized
         end
 
         # protected
@@ -54,4 +55,3 @@ module Api
     end
   end
 end
-

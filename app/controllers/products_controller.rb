@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
+# product controller
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_product, only: %i[show edit update destroy remove_picture]
@@ -24,13 +26,12 @@ class ProductsController < ApplicationController
                          when 'menor precio'
                            pagy(Product.all_by_low_price)
                          end
-                else
-                  pagy(Product.all_by_newer)
-                end
+                       else
+                         pagy(Product.all_by_newer)
+                       end
 
     @order_by_options = [['mas nuevo'], ['mas viejo'], ['nombre A-Z'], ['nombre Z-A'], ['mayor precio'],
                          ['menor precio']]
-
   end
 
   def show
@@ -137,3 +138,4 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:active, :name, :price, :stock, :user_id, pictures: [], category_ids: [])
   end
 end
+# rubocop:enable Metrics/ClassLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Users
+  # api/v1/registration controller
   class RegistrationsController < Devise::RegistrationsController
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
@@ -41,6 +42,7 @@ module Users
     # end
 
     private
+
     def respond_with(resource, _opts = {})
       register_success && return if resource.persisted?
 
@@ -52,7 +54,7 @@ module Users
     end
 
     def register_failed
-      render json: { message: "Something went wrong." }
+      render json: { message: 'Something went wrong.' }
     end
 
     # protected
