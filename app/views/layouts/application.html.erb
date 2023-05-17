@@ -49,6 +49,7 @@
               </a>
               <ul class="dropdown-menu">
                 <% if user_signed_in? && current_user.admin? %>
+                  <li><%= link_to 'ver todas', categories_path, class: 'dropdown-item' %></li>
                   <li><%= link_to 'nueva categoria', new_category_path, class: 'dropdown-item' %></li>
                 <% end %>
                 <% list_categories_for_navbar.each do |category| %>
@@ -61,11 +62,11 @@
         <ul class="navbar-nav mb-2 mb-lg-0">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <a class="nav-link" href="#">Mis compras</a>
+              <%= link_to 'Mis compras', purchases_user_path(current_user.id), class: 'nav-link' %>
             </li>
             <% if current_user.admin? %>
               <li class="nav-item">
-                <a class="nav-link" href="#">Mis ventas</a>
+                <%= link_to 'Ventas', purchases_path, class: 'nav-link' %>
               </li>
             <% end %>
             <li class="nav-item">

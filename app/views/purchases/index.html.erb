@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-between">
+  <div class="head-title">
+    <h2>
+      Ventas
+    </h2>
+  </div>
+</div>
+
+<hr>
+
+<div class="products">
+  <div class="row justify-content-center">
+    <% @purchases.each do |purchase| %>
+      <p>producto: <%= purchase.product.name %> | precio: $<%= purchase.product.price %> | comprador: <%= purchase.user.email %></p>
+    <% end %>
+    <div class="pagy-buttons">
+      <%== pagy_bootstrap_nav(@pagy, i18n_key: 'es') if @pagy.pages > 1 %>
+    </div>
+  </div>
+</div>

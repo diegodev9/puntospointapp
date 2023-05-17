@@ -26,7 +26,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :products, dependent: :destroy
+  has_many :products
+  has_many :records, as: :recordable, dependent: :destroy
+  has_many :purchases, dependent: :destroy
+  has_many :products, through: :purchases
 
   before_create :set_user_level
 

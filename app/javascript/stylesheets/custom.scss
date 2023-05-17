@@ -33,6 +33,7 @@ $color-bg-footer: #C9A7EB;
 
 .bg-main {
   background-color: $color-bg-main;
+  min-height: 750px;
 }
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
@@ -48,6 +49,25 @@ $color-bg-footer: #C9A7EB;
 .single-product {
   background-color: #fff;
   padding: 10px;
+}
+
+.head-title {
+  position: relative;
+
+  .boton-editar {
+    position: absolute;
+    bottom: 12px;
+    right: -50px;
+  }
+}
+
+.product-content {
+  position: relative;
+  .boton-editar {
+    position: absolute;
+    bottom: 4px;
+    right: 0;
+  }
 }
 
 .pagy-buttons {

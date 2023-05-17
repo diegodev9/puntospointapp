@@ -63,6 +63,12 @@ RSpec.describe 'Categories', type: :request do
         post categories_url, params: { name: 'categoria2' }, as: :json
         expect(response).to have_http_status(:created)
       end
+
+      it 'creates a new record' do
+        expect do
+          post categories_url, params: { name: 'categoria1' }, as: :json
+        end.to change(Record, :count).by(1)
+      end
     end
 
     context 'with a repeated name and credentials' do
@@ -71,6 +77,13 @@ RSpec.describe 'Categories', type: :request do
         expect do
           post categories_url, params: { name: 'categoria1' }, as: :json
         end.to change(Category, :count).by(0)
+      end
+
+      it 'does not creates a new record' do
+        post categories_url, params: { name: 'categoria1' }, as: :json
+        expect do
+          post categories_url, params: { name: 'categoria1' }, as: :json
+        end.to change(Record, :count).by(0)
       end
     end
 
@@ -92,6 +105,12 @@ RSpec.describe 'Categories', type: :request do
       it 'updates the category name' do
         patch category_url(new_category), params: { name: 'nueva categoria' }, as: :json
         expect(response).to have_http_status(:ok)
+      end
+
+      it 'creates a new record' do
+        expect do
+          patch category_url(new_category), params: { name: 'nueva categoria 1' }, as: :json
+        end.to change(Record, :count).by(1)
       end
     end
 

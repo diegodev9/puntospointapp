@@ -62,6 +62,12 @@ RSpec.describe 'Products', type: :request do
         expect(response).to have_http_status(:created)
       end
 
+      it 'creates a new record' do
+        expect do
+          post products_url, params: { product: build_product }, as: :json
+        end.to change(Record, :count).by(1)
+      end
+
       it 'saves the product categories' do
         product_params = { name: 'producto1', stock: 99, active: 1, price: 10,
                            user_id: new_user.id, category_ids: new_categories.each.map { |c| c.id.to_s }.first(3) }
@@ -91,6 +97,12 @@ RSpec.describe 'Products', type: :request do
       it 'updates a product' do
         patch product_url(new_product.id), params: { stock: 2 }, as: :json
         expect(response).to have_http_status(:ok)
+      end
+
+      it 'creates a new record' do
+        expect do
+          patch product_url(new_product.id), params: { stock: 2 }, as: :json
+        end.to change(Record, :count).by(1)
       end
     end
 

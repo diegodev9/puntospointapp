@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'users/purchases'
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
@@ -9,9 +10,28 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :products
+  scope :admin do
+    resources :purchases, only: :index
+  end
+
+  resources :users, only: :purchase do
+    member do
+      get 'purchases'
+    end
+  end
+
+  #namespace :api do
+  #namespace :v1 do
+  #end
+  #end
 
   controller :products do
     delete :remove_picture
+  end
+
+  controller :purchases do
+    post :buy_product
+    get :congratulations
   end
 
 

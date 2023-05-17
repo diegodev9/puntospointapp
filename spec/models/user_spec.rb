@@ -27,7 +27,10 @@ RSpec.describe User, type: :model do
   let(:new_user) { build(:user) }
 
   describe 'has_many and belongs conditions' do
-    it { is_expected.to have_many(:products).dependent(:destroy) }
+    it { is_expected.to have_many(:products) }
+    it { is_expected.to have_many(:records) }
+    it { is_expected.to have_many(:purchases).dependent(:destroy) }
+    it { is_expected.to have_many(:products).through(:purchases) }
   end
 
   describe 'before create' do

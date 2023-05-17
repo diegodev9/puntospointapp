@@ -1,2 +1,5 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<h2>Nueva categoria</h2>
+
+<%= render 'form', category: @category %>
+
+<%= link_to 'Cancelar', categories_path, class: 'btn btn-sm btn-dark' %>

@@ -26,6 +26,10 @@ class Product < ApplicationRecord
   has_many_attached :pictures, dependent: :destroy
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
+  has_many :records, as: :recordable, dependent: :destroy
+  has_many :purchases, dependent: :destroy
+  has_many :users, through: :purchases
+
 
   validates :pictures, content_type: { in: %w[image/jpeg image/gif image/png],
                                        message: 'formato inválido' },

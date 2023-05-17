@@ -36,12 +36,14 @@
                     </button>
                   </div>
                 <% end %>
-                <div class="text-center">
+                <div class="product-content text-center">
                   <h5><%= product.name %></h5>
                   <h6>$ <%= product.price %></h6>
                   <% if product.stock > 0 %>
-                    <%= link_to 'Editar', edit_product_path(product), class: 'btn btn-sm btn-warning' %>
-                    <a href="#" class="btn btn-primary">Comprar</a>
+                    <%= link_to edit_product_path(product), class: 'btn btn-sm btn-warning boton-editar' do %>
+                      <div class="fa fa-pen"></div>
+                    <% end %>
+                    <%= button_to 'Comprar', buy_product_path(product_id: product.id), class: 'btn btn-primary' %>
                   <% else %>
                     <p>producto no disponible</p>
                   <% end %>
@@ -50,11 +52,15 @@
             </div>
           <% end %>
         <% end %>
-        <div class="pagy-buttons">
-          <%== pagy_bootstrap_nav(@pagy, i18n_key: 'es') if @pagy.pages > 1 %>
+        <div class="col-12">
+          <div class="text-center mt-3">
+            <%= link_to 'ver más', category_path(category), class: 'btn btn-primary' %>
+          </div>
         </div>
       </div>
     </div>
   <% end %>
 <% end %>
-
+<div class="pagy-buttons">
+  <%== pagy_bootstrap_nav(@pagy, i18n_key: 'es') if @pagy.pages > 1 %>
+</div>

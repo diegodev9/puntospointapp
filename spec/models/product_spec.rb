@@ -30,5 +30,8 @@ RSpec.describe Product, type: :model do
     it { is_expected.to have_many_attached(:pictures) }
     it { is_expected.to have_many(:category_products) }
     it { is_expected.to have_many(:categories).through(:category_products) }
+    it { is_expected.to have_many(:records).dependent(:destroy) }
+    it { is_expected.to have_many(:purchases).dependent(:destroy) }
+    it { is_expected.to have_many(:users).through(:purchases) }
   end
 end
