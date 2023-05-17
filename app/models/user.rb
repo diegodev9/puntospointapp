@@ -39,6 +39,8 @@ class User < ApplicationRecord
     admin: 1
   }
 
+  scope :all_admins, -> { where(level: 1) }
+
   def set_user_level
     self.level = 0 if level.blank?
   end

@@ -15,6 +15,9 @@ class PurchasesController < ApplicationController
       if @purchase.save
         stock_product -= 1
         product.update(stock: stock_product)
+        PurchaseMailer.with(product_owner: @purchase.product.user,
+                            product_data: "#{@purchase.product.name}, $#{@purchase.product.price}").purchase_mail.deliver_later
+
         format.html { redirect_to congratulations_url(id: @purchase), notice: "compraste #{@purchase.product.name}" }
         format.json { render :congratulations, status: :created, location: @purchase }
       else
