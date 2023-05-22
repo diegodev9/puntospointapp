@@ -35,6 +35,9 @@ class Product < ApplicationRecord
                        size: { less_than: 1.megabytes,
                                message: 'la imagen supera 1MB' }
 
+  include CheckUserAdmin
+
+  before_create :check_user_admin
   before_destroy :purge_product_pictures
 
   scope :all_active, -> { where(active: true).includes([:pictures_attachments]) }

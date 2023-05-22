@@ -5,6 +5,8 @@
 # Table name: purchases
 #
 #  id         :bigint           not null, primary key
+#  category   :string
+#  owner      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  product_id :bigint           not null

@@ -5,44 +5,53 @@ module Api
     module Users
       # api/v1/session controller
       class SessionsController < Devise::SessionsController
+        include RackSessionFix
+        before_action :set_user
         # before_action :configure_sign_in_params, only: [:create]
         respond_to :json
 
-        # GET /resource/sign_in
-        # def new
-        #   super
-        # end
-
-        # POST /resource/sign_in
-        # def create
-        #   super
-        # end
-
-        # DELETE /resource/sign_out
-        def destroy
-          super do
-            return redirect_to after_sign_out_path_for(resource_name), status: :see_other, notice: 'cerraste sesion'
+        def create
+          if @user.present? && @user.level == 'admin'
+            if sign_in(@user)
+              render json: {
+                status: { code: 200, message: 'Logged in successfully.' },
+                data: @user
+              }, status: :ok
+            else
+              render json: { message: 'no estas autorizado' }, status: :unauthorized
+            end
           end
         end
 
         private
 
-        def respond_with(_resource, _opts = {})
-          render json: { message: 'You are logged in.' }, status: :ok
+        def respond_with(resource, _opts = {})
         end
 
         def respond_to_on_destroy
-          log_out_success && return if current_user
-
-          log_out_failure
+          if current_user
+            render json: {
+              status: 200,
+              message: 'logged out successfully'
+            }, status: :ok
+          else
+            render json: {
+              status: 401,
+              message: "Couldn't find an active session."
+            }, status: :unauthorized
+          end
         end
 
         def log_out_success
-          render json: { message: 'You are logged out.' }, status: :ok
+          render json: { message: 'Logged out.' }, status: :ok
         end
 
         def log_out_failure
-          render json: { message: 'Hmm nothing happened.' }, status: :unauthorized
+          render json: { message: 'Logged out failure.' }, status: :unauthorized
+        end
+
+        def set_user
+          @user = User.find_by(email: params[:user][:email])
         end
 
         # protected

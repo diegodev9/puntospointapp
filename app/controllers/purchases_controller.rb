@@ -13,6 +13,8 @@ class PurchasesController < ApplicationController
   def buy_product
     @purchase = current_user.purchases.build(purchase_params)
     product = Product.find(params[:product_id])
+    @purchase.owner = product.user_id
+    @purchase.category = product.category_ids
     stock_product = product.stock
 
     respond_to do |format|

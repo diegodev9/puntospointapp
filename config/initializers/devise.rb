@@ -15,6 +15,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'dbc3c6b5944dcada31c5d0f6c8a5de7d23f6e9ea9e324ce48b914b3968695798571d23d35b43f1dc651b980c3290988b8b2fc319fb0a253c0a5f8048802beed6'
+  config.secret_key = Rails.application.credentials.fetch(:secret_key_base)
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -312,6 +313,13 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
+    jwt.expiration_time = 1.hour.to_i
+    jwt.dispatch_requests = [
+      ['POST', %r{/api/v1/users/sign_in$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{/api/v1/users/sign_out$}]
+    ]
   end
 end

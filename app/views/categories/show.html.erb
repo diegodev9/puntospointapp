@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between">
   <div class="head-title">
     <h2><%= @category.name %></h2>
-    <% if current_user.admin? %>
+    <% if user_signed_in? && current_user.admin? %>
       <div class="boton-editar">
         <%= link_to edit_category_path(@category), class: 'btn btn-sm btn-primary' do %>
           <div class="fa fa-pen"></div>
@@ -12,10 +12,13 @@
 </div>
 
 <hr>
-<%= render 'admin_view' if current_user.admin? %>
+<%= render 'admin_view' if user_signed_in? && current_user.admin? %>
 
 <div class="products">
   <div class="row justify-content-center">
+    <% unless @category_products.present? %>
+      <p>Por el momento no hay productos asignados a esta categoría</p>
+    <% end %>
     <% @category_products.each do |product| %>
       <div class="col-lg-3 col-md-4 my-3">
         <div class="single-product h-100">

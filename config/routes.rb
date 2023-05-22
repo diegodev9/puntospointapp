@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
@@ -10,6 +11,10 @@ Rails.application.routes.draw do
       devise_for :users, controllers: {
         sessions: 'api/v1/users/sessions'
       }
+      get '/mas_comprados', to: 'api#mas_comprados'
+      get '/mas_recaudado', to: 'api#mas_recaudado'
+      get '/listar_compras', to: 'api#listar_compras'
+      get '/cantidad_compras', to: 'api#cantidad_compras'
     end
   end
 

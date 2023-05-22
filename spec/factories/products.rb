@@ -23,7 +23,7 @@
 #
 FactoryBot.define do
   factory :product do
-    name { Faker::Commerce.product_name }
+    name { "#{Faker::Commerce.product_name} #{Faker::Number.number(digits: 3)}" }
     stock { 99 }
     price { Faker::Commerce.price(range: 1..99.99) }
     active { true }

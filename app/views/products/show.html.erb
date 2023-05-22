@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between">
   <div class="head-title">
     <h2><%= @product.name %></h2>
-    <% if current_user.admin? %>
+    <% if user_signed_in? && current_user.admin? %>
       <div class="boton-editar">
         <%= link_to edit_product_path(@product), class: 'btn btn-sm btn-primary' do %>
           <div class="fa fa-pen"></div>
@@ -12,14 +12,14 @@
 </div>
 
 <hr>
-<%= render 'admin_view' if current_user.admin? %>
+<%= render 'admin_view' if user_signed_in? && current_user.admin? %>
 
 <div>
   <p>
-    Stock: <%= @product.stock %> <br>
+    <%= "Stock: #{@product.stock} <br>".html_safe if user_signed_in? && current_user.admin? %>
     Precio: <%= @product.price %> <br>
-    Activo: <%= @product.active %> <br>
-    Dueño: <%= @product.user.email %> <br>
+    <%= "Activo: #{@product.active} <br>".html_safe if user_signed_in? && current_user.admin? %>
+    <%= "Dueño: #{@product.user.email} <br>".html_safe if user_signed_in? && current_user.admin? %>
     Categorias: <% @product_categories.each do |cat| %>
       <span class="badge rounded-pill text-bg-dark"><%= cat.name %></span>
     <% end %>
