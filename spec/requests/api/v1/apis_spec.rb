@@ -20,12 +20,24 @@ RSpec.describe 'Apis', type: :request do
     products = create_list(:product, 25, user_id: new_user.id)
     # asigna categorias a productos
     products.each do |product|
-      categories.each.map(&:id).sample(3).each do |category|
+      categories.map(&:id).sample(3).each do |category|
         create(:category_product, product_id: product.id, category_id: category)
       end
     end
     # hace 50 compras para cliente
     50.times { create(:purchase, product_id: products.each.map(&:id).sample(1).join(), user_id: new_client.id) }
+  end
+  
+  describe 'POST /users/sign_in' do
+    it 'returns an authorization bearer when user is admin' do
+      post new_api_v1_user_session_url, params: { user: { email: new_user.email, password: '123456' } }, as: :json
+      expect(response.headers).to include('Authorization')
+    end
+
+    it 'does not returns an authorization bearer when user is not admin' do
+      post new_api_v1_user_session_url, params: { user: { email: new_client.email, password: '123456' } }, as: :json
+      expect(response.body).to include('no estas autorizado')
+    end
   end
 
   describe 'GET /mas_comprados' do
@@ -37,7 +49,7 @@ RSpec.describe 'Apis', type: :request do
     it 'prints most bought products by category' do
       get api_v1_mas_comprados_url, headers: authorization_headers, as: :json
       json = JSON.parse(response.body, symbolize_names: true)
-      expect(json).to include(:mas_comprados)
+      expect(json).to include(success: 'true')
     end
   end
 
@@ -50,7 +62,36 @@ RSpec.describe 'Apis', type: :request do
     it 'prints most bought products an total price' do
       get api_v1_mas_recaudado_url, headers: authorization_headers, as: :json
       json = JSON.parse(response.body, symbolize_names: true)
-      expect(json).to include(:mas_recaudado)
+      expect(json).to include(success: 'true')
+    end
+  end
+
+  describe 'GET /listar_compras' do
+    given_params = { "listar_compras": { "fecha_desde": '01/05/2023', "fecha_hasta": '31/05/2023', "category": '38',
+                                           "user_id": '42', "owner": '37' } }
+    it 'render a successful response' do
+      get api_v1_listar_compras_url, headers: authorization_headers, params: given_params, as: :json
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'prints list according to params' do
+      get api_v1_listar_compras_url, headers: authorization_headers, params: given_params, as: :json
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(json).to include(success: 'true')
+    end
+  end
+
+  describe 'GET /cantidad_compras' do
+    given_params = { "cantidad_compras": { "fecha_desde": "01/05/2023", "fecha_hasta": "31/05/2023", "granularidad": "hora" } }
+    it 'render a successful response' do
+      get api_v1_cantidad_compras_url, headers: authorization_headers, params: given_params, as: :json
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'prints list according to params' do
+      get api_v1_cantidad_compras_url, headers: authorization_headers, params: given_params, as: :json
+      json = JSON.parse(response.body, symbolize_names: true)
+      expect(json).to include(success: 'true')
     end
   end
 end

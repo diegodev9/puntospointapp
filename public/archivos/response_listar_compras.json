@@ -1,0 +1,1 @@
+{"listado_de_compras":"listado","params":{"fecha_desde":"01/05/2023","fecha_hasta":"31/05/2023","category":"38","user_id":"42","owner":"37"},"resultado":[{"id":46,"user_id":42,"product_id":123,"created_at":"2023-05-20T22:18:11.037Z","updated_at":"2023-05-20T22:18:11.037Z","category":"[37, 38, 34]","owner":37}]}

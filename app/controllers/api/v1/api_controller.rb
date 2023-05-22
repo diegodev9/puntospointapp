@@ -22,7 +22,7 @@ module Api
         if _arr == []
           render json: { 'message': 'se necesitan mas ventas para calcular' }
         else
-          render json: { 'mas_comprados': _arr }
+          render json: { 'mas_comprados': _arr, 'success': 'true' }
         end
       end
 
@@ -42,7 +42,7 @@ module Api
         if _arr == []
           render json: { 'message': 'se necesitan mas ventas para calcular' }
         else
-          render json: { 'mas_recaudado': _arr }
+          render json: { 'mas_recaudado': _arr, 'success': 'true' }
         end
       end
 
@@ -60,7 +60,9 @@ module Api
                                  created_at: l(compra.created_at, format: '%d-%m-%y'),
                                  owner: compra.owner
                                }
-                             end } }
+                             end },
+                         'success': 'true'
+          }
         else
           render json: { 'message': 'fecha_desde y fecha_hasta deben estar presentes' }
         end
@@ -112,7 +114,9 @@ module Api
               }
             end,
             'granularidad': _granularidad
-          } }
+          },
+            'success': 'true'
+          }
         else
           render json: { 'message': 'parámetro incorrecto' }
         end

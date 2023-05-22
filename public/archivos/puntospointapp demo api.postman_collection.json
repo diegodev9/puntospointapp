@@ -1,0 +1,455 @@
+{
+	"info": {
+		"_postman_id": "3301884e-c65b-4eb9-86e8-efbf61b37cbd",
+		"name": "puntospointapp demo api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24642170"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:3000/api/v1/users/sign_in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(pm.response.headers.get('Authorization'));",
+							"let token = pm.response.headers.get('Authorization');",
+							"pm.environment.set('authorization', token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followAuthorizationHeader": false,
+				"disableCookies": true,
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "User-Agent",
+						"value": "curl/7.74.0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user\":{\"email\":\"admin1@admin.com\", \"password\":\"123456\"}}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/v1/users/sign_in",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:3000/api/v1/mas_comprados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/v1/mas_comprados",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"mas_comprados"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "127.0.0.1:3000/api/v1/mas_comprados",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNSIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY4NDU0OTE5MSwiZXhwIjoxNjg0NTUyNzkxLCJqdGkiOiJjZTE5YTQ2Zi00N2RkLTQ3ODMtOTY0ZC1hMzhhZDhiZTgwNjgifQ.KmuAwVkZ-L2HMuw9DmlfcUclS7_T3_4OyDeFuftg4vc",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/v1/mas_comprados",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"mas_comprados"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, must-revalidate, private, max-age=0"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_puntospointapp_session=VC%2BfRx19xhgwvlmNdcl2gB8crQTg2lNwK5rzJf0MAFlDrKzzAqNh26hN4ObZcpjSp92q%2BM0uvRndr4IhBjURwu82fMqFx7o%2BDQlLqaLHBBAvsWz40b5SEjvDwMFHXcIw9QYCiH3zFKLI%2BHdNAoDLfk1EWzJyvu1HoYz2lWrHenRNRkT4P5gd01nDwwpVwkX3Xr%2FFAaPj%2BHzQHwmRZ8yUMdblsv1c7va7PJwzbZGBnypE4PSC%2BIGcKnI4OXQJHqKrrQNu--QtBS5kj1pnS9rlBV--uu5e43V22FdlYqkTjatRRw%3D%3D; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "d7c9b56b-1e51-4ead-a3eb-9660c4d65f84"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.081555"
+						},
+						{
+							"key": "X-MiniProfiler-Original-Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-MiniProfiler-Ids",
+							"value": "se1igjoulkm2citgxc2y,gozyulfrr3ramyupl681,gufubuies4t0m0zwdb9c,rrqrafjm9941qdqrwpgn,by7n9217zudl1xbniqbw,rwz1zfn4wwvtphimiyxr,ic3ri3992puv3g1qkzjd,2lbbqrvtt67bgsksl64w,pdb9aq9uy0k2yec83blw,ijfg3kud2yfwp04ganid,tu1kw2veg2ei4ixpxt8v,sl1qnpeias6f4gtmcrrt,tdkryha3j1etk4yzqfp7,8yhp5ktb0xsq43v24gw5,a8mov9dnmht3hfa94i1g,l2novetzkdji4zos33ns,vyqcp8fbv96upgif4055,5dhjcdbgj65nl2fje4ws,nifg3kjkdak2026a61ha,1o70qqfs0s571gw30xvn"
+						},
+						{
+							"key": "vary",
+							"value": "Accept, Origin"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mas_comprados\": [\n        {\n            \"producto\": \"Gorgeous Copper Bottle\",\n            \"categorias\": [\n                \"categoria a\",\n                \"categoria2\",\n                \"categoria5\"\n            ],\n            \"ventas\": 4\n        },\n        {\n            \"producto\": \"asdsdasd\",\n            \"categorias\": [\n                \"categoria2\",\n                \"categoria3\"\n            ],\n            \"ventas\": 2\n        },\n        {\n            \"producto\": \"Durable Wooden Hat\",\n            \"categorias\": [\n                \"categoria a\",\n                \"categoria5\",\n                \"categoria4\"\n            ],\n            \"ventas\": 2\n        },\n        {\n            \"producto\": \"Sleek Cotton Bag\",\n            \"categorias\": [\n                \"categoria a\",\n                \"categoria5\",\n                \"categoria4\"\n            ],\n            \"ventas\": 2\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/v1/mas_recaudado",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "127.0.0.1:3000/api/v1/mas_recaudado",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"mas_recaudado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:3000/api/v1/listar_compras",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"listar_compras\": {\n        \"fecha_desde\": 01/05/2023,\n        \"fecha_hasta\": 31/05/2023,\n        \"id_categoria\": 38,\n        \"id_cliente\": 42,\n        \"id_admin\": 37\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/v1/listar_compras",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"listar_compras"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "127.0.0.1:3000/api/v1/listar_compras",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"listar_compras\": {\n        \"fecha_desde\": \"01/05/2023\",\n        \"fecha_hasta\": \"31/05/2023\",\n        \"category\": \"38\",\n        \"user_id\": \"42\",\n        \"owner\": \"37\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:3000/api/v1/listar_compras",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"listar_compras"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store, must-revalidate, private, max-age=0"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_puntospointapp_session=D3xBvIeoO6L%2Bweza4jsvxT6EsUC5Ws3xNsqUAbUO4uypA5GYMCUvP%2B2WQ3SAFUBLmS7MnhA3HpOekwN1htP%2Bl9iiXfGvDp%2BOK%2ByxNqHpSh%2B%2FwR%2FtI8HorrzKXvSrrtnNrx17G%2BkuJiLOB125W%2BhbQZVZdyvRQRUFImoRJt3oZP7nK0w8xMKEufFDKqqw17stuupJyhzhXxdbjAH9scwuI%2BMK58IMQtPQPMefMMUMSRIprpg%2Bdm4u%2FL%2FNjps2va2kqLVZ%2BN5WkQ%3D%3D--2gLp2QkypSrPR8Qo--XbUNhK9wjyTvlNwYsLcWsw%3D%3D; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "__profilin=p%3Dt; path=/; HttpOnly; SameSite=Lax"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "3a93ee00-4d92-47d1-a173-c5df8d6af870"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.189703"
+						},
+						{
+							"key": "X-MiniProfiler-Original-Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "X-MiniProfiler-Ids",
+							"value": "wx10rpy6ghg665ewodz9,lh4bqlgchvidtgsbai5a,b70uj1cbiovs50uge0ba,dik6rcf134aujqiiwwod,4qw8dbncxzp532t5fis2,y0bsim5xsllcezmit66n,r54doy6h9ge7pe3dwdib,cpm4fkl80fxwuj0vu99l,1p29qs4sselovx77igdo,rl3dfjb92nnu6ad9xhyf,tcniwih6jkeab2uykaml,yp9bdo260m19bek2kncx,7qe79hvp9ol6p8mid8v4,b0c30225dashy31nwwm7,xb3p071suwnmfsull36z,y5bl3vbtors4on02ldm2,vgcwxnz7xnjnad8g5n1m,lzonv39onfr7c5c5pmss,4so10md0qlbzpiecv1gi,8rfbu2r4e3zrcbw1iv5o"
+						},
+						{
+							"key": "x-rack-cors",
+							"value": "miss; no-origin"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"listado_de_compras\": \"listado\",\n    \"params\": {\n        \"fecha_desde\": \"01/05/2023\",\n        \"fecha_hasta\": \"31/05/2023\",\n        \"category\": \"38\",\n        \"user_id\": \"42\",\n        \"owner\": \"37\"\n    },\n    \"resultado\": [\n        {\n            \"id\": 46,\n            \"user_id\": 42,\n            \"product_id\": 123,\n            \"created_at\": \"2023-05-20T22:18:11.037Z\",\n            \"updated_at\": \"2023-05-20T22:18:11.037Z\",\n            \"category\": \"[37, 38, 34]\",\n            \"owner\": 37\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "127.0.0.1:3000/api/v1/cantidad_compras",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorization}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cantidad_compras\": {\n        \"fecha_desde\": \"01/05/2023\",\n        \"fecha_hasta\": \"31/05/2023\",\n        \"granularidad\": \"hora\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/api/v1/cantidad_compras",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cantidad_compras"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -18,14 +18,19 @@ module Api
                 data: @user
               }, status: :ok
             else
-              render json: { message: 'no estas autorizado' }, status: :unauthorized
+              render json: { message: 'ocurrio un error' }, status: :unprocessable_entity
             end
+          else
+            render json: { message: 'no estas autorizado' }, status: :unauthorized
           end
         end
 
         private
 
         def respond_with(resource, _opts = {})
+          if @user.present? && @user.level != 'admin'
+            render json: { message: 'no estas autorizado' }, status: :unauthorized
+          end
         end
 
         def respond_to_on_destroy
